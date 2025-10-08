@@ -1,1 +1,0 @@
-- [x] Create comprehensive README.md file in root directory

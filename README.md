@@ -1,6 +1,6 @@
 # AMM Stacks
 
-An Automated Market Maker (AMM) implementation on the Stacks blockchain, inspired by Uniswap V2. This project provides decentralized token swapping, liquidity provision, and pool management using Clarity smart contracts and a modern Next.js frontend.
+An Automated Market Maker (AMM) implementation on the Stacks blockchain. This project provides decentralized token swapping, liquidity provision, and pool management using Clarity smart contracts and a modern Next.js frontend.
 
 ## Features
 
@@ -10,9 +10,7 @@ An Automated Market Maker (AMM) implementation on the Stacks blockchain, inspire
 - **Wallet Integration**: Connect Stacks wallets for seamless interactions.
 - **Real-time Estimates**: Get instant swap output estimates based on pool reserves.
 
-## Smart Contract Functions
-
-### Core Functions
+## Core Features
 
 #### `create-pool`
 Creates a new liquidity pool for two tokens with a specified fee.
@@ -37,44 +35,6 @@ Swaps tokens in a pool using the constant product formula (x * y = k).
 - **Parameters**: `token-0` (trait), `token-1` (trait), `fee` (uint), `input-amount` (uint), `zero-for-one` (bool)
 - **Logic**: Calculates output amount, deducts fees, updates pool reserves.
 - **Returns**: Success confirmation.
-
-### Read-Only Functions
-
-#### `get-pool-id`
-Computes the unique pool ID from token pair and fee.
-- **Parameters**: Pool info tuple
-- **Returns**: 20-byte buffer hash.
-
-#### `get-position-liquidity`
-Retrieves user's liquidity position in a pool.
-- **Parameters**: `pool-id` (buff 20), `owner` (principal)
-- **Returns**: Liquidity amount (uint).
-
-#### `get-pool-data`
-Fetches current pool state.
-- **Parameters**: `pool-id` (buff 20)
-- **Returns**: Pool data tuple (token addresses, fee, liquidity, balances).
-
-## Project Structure
-
-```
-amm-stacks-master/
-├── contracts/
-│   ├── amm.clar          # Main AMM contract
-│   └── mock-token.clar   # SIP-010 test token
-├── frontend/
-│   ├── app/
-│   │   ├── page.tsx      # Home page with swap interface
-│   │   └── pools/        # Pools management page
-│   ├── components/       # React components (Swap, Pools, etc.)
-│   ├── hooks/            # Custom hooks for Stacks integration
-│   └── lib/              # Utility functions and AMM logic
-├── tests/                # Vitest test files
-├── deployments/          # Clarinet deployment plans
-├── Clarinet.toml         # Project configuration
-├── package.json          # Root dependencies and scripts
-└── README.md             # This file
-```
 
 ## Prerequisites
 
@@ -150,18 +110,6 @@ npm run test:watch
 
 ## Deployment
 
-### Local Development (Simnet)
-
-1. Start Clarinet console:
-   ```bash
-   clarinet console
-   ```
-
-2. Deploy contracts:
-   ```bash
-   clarinet deployments apply --devnet
-   ```
-
 ### Testnet Deployment
 
 1. Configure your Stacks account in `deployments/default.testnet-plan.yaml`
@@ -192,29 +140,6 @@ All core functions (create-pool, add-liquidity, remove-liquidity, swap) are impl
 - **Testing**: Vitest for unit testing contracts and integration tests.
 - **Deployment**: Clarinet for managing contract deployments across networks.
 
-## Security Considerations
 
-- Contracts use proper access controls and input validation.
-- Minimum liquidity threshold prevents pool draining.
-- Fee calculations prevent manipulation.
-- All token transfers are validated.
 
-## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass
-6. Submit a pull request
-
-## License
-
-This project is licensed under the ISC License.
-
-## Acknowledgments
-
-- Inspired by Uniswap V2
-- Built on the Stacks blockchain
-- Uses Clarity for smart contracts
-- Frontend powered by Next.js and Stacks.js
