@@ -14,9 +14,10 @@ export function PoolsList({ pools }: PoolsListProps) {
         <span>Fee</span>
         <span>Liquidity</span>
       </div>
+
       {pools.map((pool) => (
         <PoolListItem
-          key={`pool-${pool["token-0"]}-${pool["token-1"]}`}
+          key={`pool-${pool.id}-${pool["token-0"]}-${pool["token-1"]}`}
           pool={pool}
         />
       ))}
